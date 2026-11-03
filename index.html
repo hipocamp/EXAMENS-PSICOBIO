@@ -79,8 +79,6 @@ nav {
     flex-wrap: nowrap;
 }
 
-/* PESTANYES */
-
 .tab {
     appearance: none;
     -webkit-appearance: none;
@@ -88,21 +86,17 @@ nav {
     align-items: center;
     justify-content: center;
     flex: 0 0 auto;
-
     height: 60px;
     margin: 0;
     padding: 0 5px;
-
     border: none;
     border-bottom: 3px solid transparent;
     background: none;
-
     color: #596579;
     font-family: Arial, sans-serif;
     font-size: 15px;
     line-height: 1.2;
     font-weight: normal;
-
     cursor: pointer;
     text-decoration: none;
     white-space: nowrap;
@@ -147,7 +141,7 @@ main {
     line-height: 1.6;
 }
 
-/* PESTANYES DE CONTINGUT */
+/* PESTANYES */
 
 .panel {
     display: none;
@@ -157,7 +151,7 @@ main {
     display: block;
 }
 
-/* IMATGES DE DISTRIBUCIÓ D'AULES */
+/* DISTRIBUCIÓ D'AULES */
 
 .classroom-card {
     background: white;
@@ -171,12 +165,6 @@ main {
     height: auto;
     display: block;
     border-radius: 8px;
-}
-
-.image-section + .image-section {
-    margin-top: 35px;
-    padding-top: 25px;
-    border-top: 1px solid #e8ebef;
 }
 
 .image-error {
@@ -195,6 +183,10 @@ main {
     color: var(--blue);
     font-weight: bold;
     text-decoration: none;
+}
+
+.open-image:hover {
+    text-decoration: underline;
 }
 
 /* TARGETES DELS GRUPS */
@@ -309,11 +301,6 @@ footer {
         padding: 12px;
     }
 
-    .image-section + .image-section {
-        margin-top: 25px;
-        padding-top: 20px;
-    }
-
     .groups-grid {
         grid-template-columns: 1fr;
     }
@@ -352,7 +339,7 @@ footer {
             class="tab active"
             type="button"
             onclick="showTab('aules', this)">
-            <span>Distribució<br>d'aules</span>
+            Distribució d'aules
         </button>
 
         <button
@@ -361,6 +348,18 @@ footer {
             onclick="showTab('grups', this)">
             Grups
         </button>
+
+        <!-- INCIDÈNCIES -->
+
+        <a
+            class="tab"
+            href="https://docs.google.com/document/d/1ScKIjzVEfuZWeZtoEs8ERHj7-Ms5n0lb63BIpEU4q5Q/edit?usp=sharing"
+            target="_blank"
+            rel="noopener">
+            Incidències ↗
+        </a>
+
+        <!-- CONTRASENYES -->
 
         <a
             class="tab"
@@ -393,88 +392,40 @@ footer {
 
     <div class="classroom-card">
 
-        <!-- PRIMERA IMATGE -->
+        <img
+            id="docentsImage"
+            class="classroom-image"
+            src="./aules-docents.jpg"
+            alt="Distribució de les aules docents"
+            onerror="
+                this.style.display='none';
+                document.getElementById('docentsError').style.display='block';
+                document.getElementById('docentsLink').style.display='none';
+            "
+        >
 
-        <div class="image-section">
+        <div id="docentsError" class="image-error">
 
-            <img
-                class="classroom-image"
-                id="classroomImage"
-                src="./distribucio-aules.jpg"
-                alt="Distribució de grups per aules"
-                onerror="
-                    this.style.display='none';
-                    document.getElementById('imageError').style.display='block';
-                    document.getElementById('imageLink').style.display='none';
-                "
-            >
+            <strong>No s'ha pogut carregar la imatge.</strong>
 
-            <div id="imageError" class="image-error">
-
-                <strong>No s'ha pogut carregar la primera imatge.</strong>
-
-                <p>
-                    Comprova que el fitxer es diu exactament
-                    distribucio-aules.jpg i que està al mateix
-                    repositori que index.html.
-                </p>
-
-            </div>
-
-            <a
-                id="imageLink"
-                href="./distribucio-aules.jpg"
-                target="_blank"
-                rel="noopener"
-                class="open-image">
-
-                Obrir imatge a mida completa ↗
-
-            </a>
+            <p>
+                Comprova que el fitxer es diu exactament
+                aules-docents.jpg i que està al mateix
+                repositori que index.html.
+            </p>
 
         </div>
 
+        <a
+            id="docentsLink"
+            href="./aules-docents.jpg"
+            target="_blank"
+            rel="noopener"
+            class="open-image">
 
-        <!-- SEGONA IMATGE: AULES DOCENTS -->
+            Obrir imatge a mida completa ↗
 
-        <div class="image-section">
-
-            <img
-                class="classroom-image"
-                id="docentsImage"
-                src="./aules-docents.jpg"
-                alt="Distribució de les aules docents"
-                onerror="
-                    this.style.display='none';
-                    document.getElementById('docentsError').style.display='block';
-                    document.getElementById('docentsLink').style.display='none';
-                "
-            >
-
-            <div id="docentsError" class="image-error">
-
-                <strong>No s'ha pogut carregar la segona imatge.</strong>
-
-                <p>
-                    Comprova que el fitxer es diu exactament
-                    aules-docents.jpg i que està al mateix
-                    repositori que index.html.
-                </p>
-
-            </div>
-
-            <a
-                id="docentsLink"
-                href="./aules-docents.jpg"
-                target="_blank"
-                rel="noopener"
-                class="open-image">
-
-                Obrir imatge a mida completa ↗
-
-            </a>
-
-        </div>
+        </a>
 
     </div>
 
@@ -545,7 +496,7 @@ footer {
                 <svg viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" stroke-width="2"
                      stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2-2V8z"/>
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                     <path d="M14 2v6h6"/>
                     <path d="M8 13h8M8 17h6"/>
                 </svg>
@@ -574,7 +525,7 @@ footer {
                 <svg viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" stroke-width="2"
                      stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2-2V8z"/>
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                     <path d="M14 2v6h6"/>
                     <path d="M8 13h8M8 17h6"/>
                 </svg>
@@ -603,7 +554,7 @@ footer {
                 <svg viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" stroke-width="2"
                      stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2-2V8z"/>
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                     <path d="M14 2v6h6"/>
                     <path d="M8 13h8M8 17h6"/>
                 </svg>
@@ -632,7 +583,7 @@ footer {
                 <svg viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" stroke-width="2"
                      stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2-2V8z"/>
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                     <path d="M14 2v6h6"/>
                     <path d="M8 13h8M8 17h6"/>
                 </svg>
@@ -661,7 +612,7 @@ footer {
                 <svg viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" stroke-width="2"
                      stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0-2-2V8z"/>
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                     <path d="M14 2v6h6"/>
                     <path d="M8 13h8M8 17h6"/>
                 </svg>
@@ -690,7 +641,7 @@ footer {
                 <svg viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" stroke-width="2"
                      stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2-2V8z"/>
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                     <path d="M14 2v6h6"/>
                     <path d="M8 13h8M8 17h6"/>
                 </svg>
