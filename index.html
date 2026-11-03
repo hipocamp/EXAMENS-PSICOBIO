@@ -78,11 +78,12 @@ nav {
     flex-wrap: nowrap;
 }
 
-/* Mateix format per als botons i l'enllaç */
+/* PESTANYES */
 
 .tab {
     appearance: none;
     -webkit-appearance: none;
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -99,7 +100,7 @@ nav {
     color: #596579;
     font-family: Arial, sans-serif;
     font-size: 15px;
-    line-height: 1;
+    line-height: 1.2;
     font-weight: normal;
 
     cursor: pointer;
@@ -116,6 +117,14 @@ nav {
     color: var(--blue);
     font-weight: bold;
     border-bottom-color: var(--gold);
+}
+
+/* DISTRIBUCIÓ D'AULES EN DUES LÍNIES */
+
+.tab:first-child {
+    width: 120px;
+    white-space: normal;
+    text-align: center;
 }
 
 /* CONTINGUT */
@@ -138,7 +147,7 @@ main {
     line-height: 1.6;
 }
 
-/* PESTANYES */
+/* PESTANYES DE CONTINGUT */
 
 .panel {
     display: none;
@@ -286,6 +295,10 @@ footer {
         height: 55px;
     }
 
+    .tab:first-child {
+        width: 105px;
+    }
+
     .classroom-card {
         padding: 12px;
     }
@@ -328,7 +341,7 @@ footer {
             class="tab active"
             type="button"
             onclick="showTab('aules', this)">
-            Distribució d'aules
+            <span>Distribució<br>d'aules</span>
         </button>
 
         <button
@@ -472,7 +485,7 @@ footer {
                 <svg viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" stroke-width="2"
                      stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2-2V8z"/>
                     <path d="M14 2v6h6"/>
                     <path d="M8 13h8M8 17h6"/>
                 </svg>
@@ -501,7 +514,7 @@ footer {
                 <svg viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" stroke-width="2"
                      stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2-2V8z"/>
                     <path d="M14 2v6h6"/>
                     <path d="M8 13h8M8 17h6"/>
                 </svg>
@@ -530,7 +543,7 @@ footer {
                 <svg viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" stroke-width="2"
                      stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2-2V8z"/>
                     <path d="M14 2v6h6"/>
                     <path d="M8 13h8M8 17h6"/>
                 </svg>
@@ -559,7 +572,7 @@ footer {
                 <svg viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" stroke-width="2"
                      stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2-2V8z"/>
                     <path d="M14 2v6h6"/>
                     <path d="M8 13h8M8 17h6"/>
                 </svg>
@@ -588,7 +601,7 @@ footer {
                 <svg viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" stroke-width="2"
                      stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2-2V8z"/>
                     <path d="M14 2v6h6"/>
                     <path d="M8 13h8M8 17h6"/>
                 </svg>
@@ -617,7 +630,7 @@ footer {
                 <svg viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" stroke-width="2"
                      stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2-2V8z"/>
                     <path d="M14 2v6h6"/>
                     <path d="M8 13h8M8 17h6"/>
                 </svg>
@@ -652,7 +665,7 @@ function showTab(tabId, button) {
         panel.classList.remove('active');
     });
 
-    // Desactivar tots els botons de navegació
+    // Desactivar totes les pestanyes
     document.querySelectorAll('.nav-content .tab').forEach(function(tab) {
         tab.classList.remove('active');
     });
@@ -660,7 +673,7 @@ function showTab(tabId, button) {
     // Mostrar la secció seleccionada
     document.getElementById(tabId).classList.add('active');
 
-    // Activar el botó seleccionat
+    // Activar la pestanya seleccionada
     button.classList.add('active');
 
     // Tornar a l'inici del contingut
