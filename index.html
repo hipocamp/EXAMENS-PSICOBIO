@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ca">
 <head>
@@ -83,7 +84,6 @@ nav {
 .tab {
     appearance: none;
     -webkit-appearance: none;
-
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -157,7 +157,7 @@ main {
     display: block;
 }
 
-/* DISTRIBUCIÓ D'AULES */
+/* IMATGES DE DISTRIBUCIÓ D'AULES */
 
 .classroom-card {
     background: white;
@@ -166,11 +166,17 @@ main {
     box-shadow: 0 3px 15px rgba(0,0,0,0.04);
 }
 
-.classroom-card img {
+.classroom-image {
     width: 100%;
     height: auto;
     display: block;
     border-radius: 8px;
+}
+
+.image-section + .image-section {
+    margin-top: 35px;
+    padding-top: 25px;
+    border-top: 1px solid #e8ebef;
 }
 
 .image-error {
@@ -303,6 +309,11 @@ footer {
         padding: 12px;
     }
 
+    .image-section + .image-section {
+        margin-top: 25px;
+        padding-top: 20px;
+    }
+
     .groups-grid {
         grid-template-columns: 1fr;
     }
@@ -382,39 +393,88 @@ footer {
 
     <div class="classroom-card">
 
-        <img
-            id="classroomImage"
-            src="./distribucio-aules.jpg"
-            alt="Distribució de grups per aules"
-            onerror="
-                this.style.display='none';
-                document.getElementById('imageError').style.display='block';
-                document.getElementById('imageLink').style.display='none';
-            "
-        >
+        <!-- PRIMERA IMATGE -->
 
-        <div id="imageError" class="image-error">
+        <div class="image-section">
 
-            <strong>No s'ha pogut carregar la imatge.</strong>
+            <img
+                class="classroom-image"
+                id="classroomImage"
+                src="./distribucio-aules.jpg"
+                alt="Distribució de grups per aules"
+                onerror="
+                    this.style.display='none';
+                    document.getElementById('imageError').style.display='block';
+                    document.getElementById('imageLink').style.display='none';
+                "
+            >
 
-            <p>
-                Comprova que el fitxer es diu exactament
-                distribucio-aules.jpg i que està al mateix
-                repositori que index.html.
-            </p>
+            <div id="imageError" class="image-error">
+
+                <strong>No s'ha pogut carregar la primera imatge.</strong>
+
+                <p>
+                    Comprova que el fitxer es diu exactament
+                    distribucio-aules.jpg i que està al mateix
+                    repositori que index.html.
+                </p>
+
+            </div>
+
+            <a
+                id="imageLink"
+                href="./distribucio-aules.jpg"
+                target="_blank"
+                rel="noopener"
+                class="open-image">
+
+                Obrir imatge a mida completa ↗
+
+            </a>
 
         </div>
 
-        <a
-            id="imageLink"
-            href="./distribucio-aules.jpg"
-            target="_blank"
-            rel="noopener"
-            class="open-image">
 
-            Obrir imatge a mida completa ↗
+        <!-- SEGONA IMATGE: AULES DOCENTS -->
 
-        </a>
+        <div class="image-section">
+
+            <img
+                class="classroom-image"
+                id="docentsImage"
+                src="./aules-docents.jpg"
+                alt="Distribució de les aules docents"
+                onerror="
+                    this.style.display='none';
+                    document.getElementById('docentsError').style.display='block';
+                    document.getElementById('docentsLink').style.display='none';
+                "
+            >
+
+            <div id="docentsError" class="image-error">
+
+                <strong>No s'ha pogut carregar la segona imatge.</strong>
+
+                <p>
+                    Comprova que el fitxer es diu exactament
+                    aules-docents.jpg i que està al mateix
+                    repositori que index.html.
+                </p>
+
+            </div>
+
+            <a
+                id="docentsLink"
+                href="./aules-docents.jpg"
+                target="_blank"
+                rel="noopener"
+                class="open-image">
+
+                Obrir imatge a mida completa ↗
+
+            </a>
+
+        </div>
 
     </div>
 
@@ -601,7 +661,7 @@ footer {
                 <svg viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" stroke-width="2"
                      stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2-2V8z"/>
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0-2-2V8z"/>
                     <path d="M14 2v6h6"/>
                     <path d="M8 13h8M8 17h6"/>
                 </svg>
