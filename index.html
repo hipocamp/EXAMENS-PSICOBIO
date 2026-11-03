@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ca">
 <head>
@@ -75,6 +74,7 @@ nav {
     margin: auto;
     display: flex;
     gap: 30px;
+    flex-wrap: wrap;
 }
 
 .tab {
@@ -208,7 +208,7 @@ main {
     margin-bottom: 20px;
 }
 
-/* BOTONS PDF */
+/* ENLLAÇOS PDF */
 
 .pdf-link {
     display: flex;
@@ -236,6 +236,23 @@ main {
     flex-shrink: 0;
 }
 
+/* DOCUMENT DE CONTRASENYES */
+
+.password-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.04);
+}
+
+.password-pdf {
+    width: 100%;
+    height: 750px;
+    border: none;
+    border-radius: 8px;
+    display: block;
+}
+
 /* PEU DE PÀGINA */
 
 footer {
@@ -260,14 +277,20 @@ footer {
 
     .tab {
         font-size: 13px;
+        padding: 17px 2px;
     }
 
-    .classroom-card {
+    .classroom-card,
+    .password-card {
         padding: 12px;
     }
 
     .groups-grid {
         grid-template-columns: 1fr;
+    }
+
+    .password-pdf {
+        height: 600px;
     }
 }
 </style>
@@ -311,6 +334,13 @@ footer {
             type="button"
             onclick="showTab('grups', this)">
             Grups
+        </button>
+
+        <button
+            class="tab"
+            type="button"
+            onclick="showTab('contrasenyes', this)">
+            Contrasenyes
         </button>
 
     </div>
@@ -390,7 +420,6 @@ footer {
     </p>
 
     <div class="groups-grid">
-
 
         <!-- GRUP M1 -->
 
@@ -593,6 +622,43 @@ footer {
             </a>
 
         </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================= -->
+<!-- PESTANYA 3: CONTRASENYES -->
+<!-- ================================= -->
+
+<section id="contrasenyes" class="panel">
+
+    <h2 class="section-title">
+        Contrasenyes
+    </h2>
+
+    <p class="description">
+        Consulta el document amb les contrasenyes.
+    </p>
+
+    <div class="password-card">
+
+        <iframe
+            class="password-pdf"
+            src="./contrasenyes.pdf"
+            title="Document de contrasenyes">
+        </iframe>
+
+        <a
+            href="./contrasenyes.pdf"
+            target="_blank"
+            rel="noopener"
+            class="open-image">
+
+            Obrir PDF en una pestanya nova ↗
+
+        </a>
 
     </div>
 
