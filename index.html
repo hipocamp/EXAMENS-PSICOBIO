@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Psicobiologia | Universitat de Barcelona</title>
 
 <style>
@@ -15,7 +16,13 @@
     --text: #253247;
 }
 
-* { box-sizing: border-box; }
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
 
 body {
     margin: 0;
@@ -24,10 +31,12 @@ body {
     color: var(--text);
 }
 
+/* CAPÇALERA */
+
 header {
     background: var(--blue);
     color: white;
-    padding: 35px 8%;
+    padding: 38px 8%;
 }
 
 .header-content {
@@ -43,14 +52,17 @@ header {
 }
 
 header h1 {
-    font-size: 32px;
+    font-size: 34px;
     margin: 15px 0 8px;
 }
 
 header p {
     color: #d5dce7;
     margin: 0;
+    font-size: 15px;
 }
+
+/* NAVEGACIÓ */
 
 nav {
     background: white;
@@ -66,7 +78,7 @@ nav {
 }
 
 .tab {
-    padding: 19px 5px;
+    padding: 20px 5px;
     border: none;
     background: none;
     color: #596579;
@@ -75,11 +87,17 @@ nav {
     border-bottom: 3px solid transparent;
 }
 
+.tab:hover {
+    color: var(--blue);
+}
+
 .tab.active {
     color: var(--blue);
     font-weight: bold;
     border-bottom-color: var(--gold);
 }
+
+/* CONTINGUT */
 
 main {
     max-width: 1100px;
@@ -88,21 +106,28 @@ main {
 }
 
 .section-title {
-    font-size: 24px;
+    font-size: 25px;
     color: var(--blue);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .description {
     color: #758093;
-    margin-bottom: 28px;
+    margin-bottom: 30px;
     line-height: 1.6;
 }
 
-.panel { display: none; }
-.panel.active { display: block; }
+/* PESTANYES */
 
-/* IMATGE AULES */
+.panel {
+    display: none;
+}
+
+.panel.active {
+    display: block;
+}
+
+/* DISTRIBUCIÓ D'AULES */
 
 .classroom-card {
     background: white;
@@ -120,7 +145,7 @@ main {
 
 .image-error {
     display: none;
-    padding: 40px 20px;
+    padding: 35px 20px;
     text-align: center;
     background: #f5f7fa;
     border: 1px dashed #b8c3d1;
@@ -136,7 +161,7 @@ main {
     text-decoration: none;
 }
 
-/* GRUPS */
+/* TARGETES DELS GRUPS */
 
 .groups-grid {
     display: grid;
@@ -154,19 +179,19 @@ main {
 
 .group-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 7px 22px rgba(0,0,0,0.08);
+    box-shadow: 0 7px 22px rgba(0,0,0,0.07);
 }
 
 .group-icon {
-    width: 55px;
-    height: 55px;
+    width: 58px;
+    height: 58px;
     background: var(--blue-light);
     color: var(--blue);
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 19px;
+    font-size: 20px;
     font-weight: bold;
     margin-bottom: 18px;
 }
@@ -182,6 +207,8 @@ main {
     color: #8290a0;
     margin-bottom: 20px;
 }
+
+/* BOTONS PDF */
 
 .pdf-link {
     display: flex;
@@ -204,221 +231,413 @@ main {
 }
 
 .pdf-link svg {
-    width: 18px;
-    height: 18px;
+    width: 19px;
+    height: 19px;
     flex-shrink: 0;
 }
 
+/* PEU DE PÀGINA */
+
 footer {
     margin-top: 70px;
-    padding: 25px;
+    padding: 30px;
     text-align: center;
     color: #8993a2;
     font-size: 12px;
+    border-top: 1px solid #e8ebef;
 }
 
-@media(max-width: 600px) {
-    header h1 { font-size: 25px; }
-    .nav-content { gap: 15px; }
-    .tab { font-size: 13px; }
+/* MÒBILS */
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 26px;
+    }
+
+    .nav-content {
+        gap: 15px;
+    }
+
+    .tab {
+        font-size: 13px;
+    }
+
+    .classroom-card {
+        padding: 12px;
+    }
+
+    .groups-grid {
+        grid-template-columns: 1fr;
+    }
 }
 </style>
 </head>
 
 <body>
 
+<!-- CAPÇALERA -->
+
 <header>
     <div class="header-content">
-        <div class="university">Universitat de Barcelona</div>
+
+        <div class="university">
+            UNIVERSITAT DE BARCELONA
+        </div>
+
         <h1>Psicobiologia</h1>
-        <p>Informació de grups i distribució d'aules</p>
+
+        <p>
+            Informació de grups i distribució d'aules
+        </p>
+
     </div>
 </header>
 
+
+<!-- MENÚ DE NAVEGACIÓ -->
+
 <nav>
     <div class="nav-content">
-        <button class="tab active" onclick="showTab('aules', this)">
+
+        <button
+            class="tab active"
+            type="button"
+            onclick="showTab('aules', this)">
             Distribució d'aules
         </button>
 
-        <button class="tab" onclick="showTab('grups', this)">
+        <button
+            class="tab"
+            type="button"
+            onclick="showTab('grups', this)">
             Grups de pràctiques
         </button>
+
     </div>
 </nav>
 
+
 <main>
 
-    <!-- DISTRIBUCIÓ D'AULES -->
+<!-- ================================= -->
+<!-- PESTANYA 1: DISTRIBUCIÓ D'AULES -->
+<!-- ================================= -->
 
-    <section id="aules" class="panel active">
+<section id="aules" class="panel active">
 
-        <h2 class="section-title">Distribució de grups per aules</h2>
+    <h2 class="section-title">
+        Distribució de grups per aules
+    </h2>
 
-        <p class="description">
-            Consulta l'assignació d'aules corresponent a cada grup.
-        </p>
+    <p class="description">
+        Consulta la distribució dels grups i les aules
+        assignades a cada grup de Psicobiologia.
+    </p>
 
-        <div class="classroom-card">
+    <div class="classroom-card">
 
-            <img
-                id="classroomImage"
-                src="distribucio-aules.jpg"
-                alt="Distribució de grups per aules"
-                onerror="this.style.display='none'; document.getElementById('imageError').style.display='block'; document.getElementById('imageLink').style.display='none';"
-            >
+        <img
+            id="classroomImage"
+            src="./distribucio-aules.jpg"
+            alt="Distribució de grups per aules"
+            onerror="
+                this.style.display='none';
+                document.getElementById('imageError').style.display='block';
+                document.getElementById('imageLink').style.display='none';
+            "
+        >
 
-            <div id="imageError" class="image-error">
-                <strong>No s'ha pogut carregar la imatge.</strong>
-                <p>Comprova que el fitxer distribucio-aules.jpg està a la mateixa carpeta que index.html.</p>
-            </div>
+        <div id="imageError" class="image-error">
 
-            <a id="imageLink"
-               href="distribucio-aules.jpg"
+            <strong>No s'ha pogut carregar la imatge.</strong>
+
+            <p>
+                Comprova que el fitxer es diu exactament
+                distribucio-aules.jpg i que està al mateix
+                repositori que index.html.
+            </p>
+
+        </div>
+
+        <a
+            id="imageLink"
+            href="./distribucio-aules.jpg"
+            target="_blank"
+            rel="noopener"
+            class="open-image">
+
+            Obrir imatge a mida completa ↗
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ================================= -->
+<!-- PESTANYA 2: GRUPS DE PRÀCTIQUES -->
+<!-- ================================= -->
+
+<section id="grups" class="panel">
+
+    <h2 class="section-title">
+        Grups de pràctiques
+    </h2>
+
+    <p class="description">
+        Selecciona el teu grup per consultar el document PDF corresponent.
+    </p>
+
+    <div class="groups-grid">
+
+
+        <!-- GRUP M1 -->
+
+        <div class="group-card">
+
+            <div class="group-icon">M1</div>
+
+            <h3>Grup M1</h3>
+
+            <p>Document del grup M1</p>
+
+            <a href="./M1.pdf"
                target="_blank"
-               class="open-image">
-                Obrir imatge a mida completa ↗
+               rel="noopener"
+               class="pdf-link">
+
+                <svg viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <path d="M14 2v6h6"/>
+                    <path d="M8 13h8M8 17h6"/>
+                </svg>
+
+                Consultar PDF ↗
             </a>
 
         </div>
 
-    </section>
 
+        <!-- GRUP M2 -->
 
-    <!-- GRUPS DE PRÀCTIQUES -->
+        <div class="group-card">
 
-    <section id="grups" class="panel">
+            <div class="group-icon">M2</div>
 
-        <h2 class="section-title">Grups de pràctiques</h2>
+            <h3>Grup M2</h3>
 
-        <p class="description">
-            Selecciona el teu grup per consultar el document PDF corresponent.
-        </p>
+            <p>Document del grup M2</p>
 
-        <div class="groups-grid">
+            <a href="./M2.pdf"
+               target="_blank"
+               rel="noopener"
+               class="pdf-link">
 
-            <!-- M1 -->
-            <div class="group-card">
-                <div class="group-icon">M1</div>
-                <h3>Grup M1</h3>
-                <p>Document del grup M1</p>
-                <a href="pdf/M1.pdf" target="_blank" class="pdf-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                        <path d="M14 2v6h6M8 13h8M8 17h6"/>
-                    </svg>
-                    Consultar PDF
-                </a>
-            </div>
+                <svg viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <path d="M14 2v6h6"/>
+                    <path d="M8 13h8M8 17h6"/>
+                </svg>
 
-            <!-- M2 -->
-            <div class="group-card">
-                <div class="group-icon">M2</div>
-                <h3>Grup M2</h3>
-                <p>Document del grup M2</p>
-                <a href="pdf/M2.pdf" target="_blank" class="pdf-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                        <path d="M14 2v6h6M8 13h8M8 17h6"/>
-                    </svg>
-                    Consultar PDF
-                </a>
-            </div>
-
-            <!-- M3 -->
-            <div class="group-card">
-                <div class="group-icon">M3</div>
-                <h3>Grup M3</h3>
-                <p>Document del grup M3</p>
-                <a href="pdf/M3.pdf" target="_blank" class="pdf-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                        <path d="M14 2v6h6M8 13h8M8 17h6"/>
-                    </svg>
-                    Consultar PDF
-                </a>
-            </div>
-
-            <!-- M4 -->
-            <div class="group-card">
-                <div class="group-icon">M4</div>
-                <h3>Grup M4</h3>
-                <p>Document del grup M4</p>
-                <a href="pdf/M4.pdf" target="_blank" class="pdf-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                        <path d="M14 2v6h6M8 13h8M8 17h6"/>
-                    </svg>
-                    Consultar PDF
-                </a>
-            </div>
-
-            <!-- M5 -->
-            <div class="group-card">
-                <div class="group-icon">M5</div>
-                <h3>Grup M5</h3>
-                <p>Document del grup M5</p>
-                <a href="pdf/M5.pdf" target="_blank" class="pdf-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                        <path d="M14 2v6h6M8 13h8M8 17h6"/>
-                    </svg>
-                    Consultar PDF
-                </a>
-            </div>
-
-            <!-- T1 -->
-            <div class="group-card">
-                <div class="group-icon">T1</div>
-                <h3>Grup T1</h3>
-                <p>Document del grup T1</p>
-                <a href="pdf/T1.pdf" target="_blank" class="pdf-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                        <path d="M14 2v6h6M8 13h8M8 17h6"/>
-                    </svg>
-                    Consultar PDF
-                </a>
-            </div>
-
-            <!-- E -->
-            <div class="group-card">
-                <div class="group-icon">E</div>
-                <h3>Grup E</h3>
-                <p>Document del grup E</p>
-                <a href="pdf/E.pdf" target="_blank" class="pdf-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                        <path d="M14 2v6h6M8 13h8M8 17h6"/>
-                    </svg>
-                    Consultar PDF
-                </a>
-            </div>
+                Consultar PDF ↗
+            </a>
 
         </div>
 
-    </section>
+
+        <!-- GRUP M3 -->
+
+        <div class="group-card">
+
+            <div class="group-icon">M3</div>
+
+            <h3>Grup M3</h3>
+
+            <p>Document del grup M3</p>
+
+            <a href="./M3.pdf"
+               target="_blank"
+               rel="noopener"
+               class="pdf-link">
+
+                <svg viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <path d="M14 2v6h6"/>
+                    <path d="M8 13h8M8 17h6"/>
+                </svg>
+
+                Consultar PDF ↗
+            </a>
+
+        </div>
+
+
+        <!-- GRUP M4 -->
+
+        <div class="group-card">
+
+            <div class="group-icon">M4</div>
+
+            <h3>Grup M4</h3>
+
+            <p>Document del grup M4</p>
+
+            <a href="./M4.pdf"
+               target="_blank"
+               rel="noopener"
+               class="pdf-link">
+
+                <svg viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <path d="M14 2v6h6"/>
+                    <path d="M8 13h8M8 17h6"/>
+                </svg>
+
+                Consultar PDF ↗
+            </a>
+
+        </div>
+
+
+        <!-- GRUP M5 -->
+
+        <div class="group-card">
+
+            <div class="group-icon">M5</div>
+
+            <h3>Grup M5</h3>
+
+            <p>Document del grup M5</p>
+
+            <a href="./M5.pdf"
+               target="_blank"
+               rel="noopener"
+               class="pdf-link">
+
+                <svg viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <path d="M14 2v6h6"/>
+                    <path d="M8 13h8M8 17h6"/>
+                </svg>
+
+                Consultar PDF ↗
+            </a>
+
+        </div>
+
+
+        <!-- GRUP T1 -->
+
+        <div class="group-card">
+
+            <div class="group-icon">T1</div>
+
+            <h3>Grup T1</h3>
+
+            <p>Document del grup T1</p>
+
+            <a href="./T1.pdf"
+               target="_blank"
+               rel="noopener"
+               class="pdf-link">
+
+                <svg viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <path d="M14 2v6h6"/>
+                    <path d="M8 13h8M8 17h6"/>
+                </svg>
+
+                Consultar PDF ↗
+            </a>
+
+        </div>
+
+
+        <!-- GRUP E -->
+
+        <div class="group-card">
+
+            <div class="group-icon">E</div>
+
+            <h3>Grup E</h3>
+
+            <p>Document del grup E</p>
+
+            <a href="./E.pdf"
+               target="_blank"
+               rel="noopener"
+               class="pdf-link">
+
+                <svg viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <path d="M14 2v6h6"/>
+                    <path d="M8 13h8M8 17h6"/>
+                </svg>
+
+                Consultar PDF ↗
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
 
 </main>
+
+
+<!-- PEU DE PÀGINA -->
 
 <footer>
     Psicobiologia · Universitat de Barcelona
 </footer>
 
+
+<!-- JAVASCRIPT DE NAVEGACIÓ -->
+
 <script>
+
 function showTab(tabId, button) {
 
-    document.querySelectorAll('.panel').forEach(panel => {
+    // Amagar totes les seccions
+    document.querySelectorAll('.panel').forEach(function(panel) {
         panel.classList.remove('active');
     });
 
-    document.querySelectorAll('.tab').forEach(tab => {
+    // Desactivar tots els botons
+    document.querySelectorAll('.tab').forEach(function(tab) {
         tab.classList.remove('active');
     });
 
+    // Mostrar la secció seleccionada
     document.getElementById(tabId).classList.add('active');
+
+    // Activar el botó seleccionat
     button.classList.add('active');
+
+    // Tornar a l'inici del contingut
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+
 }
+
 </script>
 
 </body>
